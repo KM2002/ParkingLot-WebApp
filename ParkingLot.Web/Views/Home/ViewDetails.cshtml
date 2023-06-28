@@ -1,0 +1,127 @@
+﻿@model ParkingLot.Entities.ViewModels.ParkingLotView
+@{Layout = "_LayoutGeneral"; }
+<main id="main">
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('/images/parking2.jpeg');">
+        <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+            <h2>Parking Details</h2>
+            <ol>
+                <li><a href="index.html">Home</a></li>
+                <li>Parking Details</li>
+            </ol>
+        </div>
+    </div>
+</main>
+
+<section class="pt-4">
+    <div class="container px-lg-5">
+        <!-- Page Features-->
+        <div class="row gx-lg-5">
+            <div class="col-lg-6 col-xxl-4 mb-5">
+                <div class="card bg-light border-0 h-100">
+                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-card-heading"></i></div>
+                        <h2 class="fs-4 fw-bold">Parking Name</h2>
+                        <p class="fs-5 mb-0">@Model.ParkingLotDetails.name</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-xxl-4 mb-5">
+                <div class="card bg-light border-0 h-100">
+                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-geo-alt"></i></div>
+                        <h2 class="fs-4 fw-bold">Location</h2>
+                        <p class="fs-5 mb-0">@Model.ParkingLotDetails.location</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-xxl-4 mb-5">
+                <div class="card bg-light border-0 h-100">
+                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-person"></i></div>
+                        <h2 class="fs-4 fw-bold">Owner's Name</h2>
+                        <p class="fs-5 mb-0">@Model.ParkingLotDetails.ownername</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-xxl-4 mb-5">
+                <div class="card bg-light border-0 h-100">
+                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-clock"></i></div>
+                        <h2 class="fs-4 fw-bold">Opening Time</h2>
+                        <p class="fs-5 mb-0">@Model.ParkingLotDetails.openingtime</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-xxl-4 mb-5">
+                <div class="card bg-light border-0 h-100">
+                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-clock"></i></div>
+                        <h2 class="fs-4 fw-bold">Closing Time</h2>
+                        <p class="fs-5 mb-0">@Model.ParkingLotDetails.closingtime</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-xxl-4 mb-5">
+                <div class="card bg-light border-0 h-100">
+                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-calendar-x"></i></div>
+                        <h2 class="fs-4 fw-bold">Closed On</h2>
+                        <p class="fs-5 mb-0">@Model.ParkingLotDetails.closedon</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-xxl-4 mb-5">
+                <div class="card bg-light border-0 h-100">
+                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-person-rolodex"></i></div>
+                        <h2 class="fs-4 fw-bold">Contact No.</h2>
+                        <p class="fs-5 mb-0">@Model.ParkingLotDetails.contactno</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-xxl-4 mb-5">
+                <div class="card bg-light border-0 h-100">
+                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-list"></i></div>
+                        <h2 class="fs-4 fw-bold">Facilities: </h2>
+                        <p class="fs-5 mb-0">
+                            @foreach (var item in Model.ParkingLotFacilities)
+                            {
+                                if (item.IsChecked)
+                                {
+                                    <div class="fs-5 mb-0">@item.Facility</div>
+
+                                }
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-xxl-4 mb-5">
+                <div class="card bg-light border-0 h-100">
+                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-list"></i></div>
+                        <h2 class="fs-4 fw-bold">Parking Type: </h2>
+                        <p class="fs-5 mb-0">
+                            @foreach (var item in Model.ParkingLotTypes)
+                            {
+                                if (item.IsChecked)
+                                {
+                                    <div class="fs-5 mb-0">@item.Type</div>
+
+                                }
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54781.51996887815!2d88.58793740891332!3d27.326133268233946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e6a56a5805eafb%3A0x73d6132c501c8f20!2sGangtok%2C%20Sikkim!5e0!3m2!1sen!2sin!4v1687317766967!5m2!1sen!2sin" width="100%" height="650" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</section>
+

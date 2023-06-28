@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/ParkingLot.Web.props" />
+</Project>

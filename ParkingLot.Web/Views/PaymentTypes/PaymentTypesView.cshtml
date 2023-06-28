@@ -1,0 +1,112 @@
+﻿@model ParkingLot.Entities.ViewModels.PaymentTypeViewModel
+
+@{
+    ViewData["Title"] = "PaymentTypes";
+}
+
+<div class="text-justify">
+    <h1>Payment Types</h1>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <a class="btn btn-primary float-end" href="/PaymentTypes/AddMstPaymentTypes">Add new</a>
+    </div>
+</div>
+@if (TempData["ErrMsg"] != null)
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if ('@TempData["ErrMsg"]' === 'success') {
+                toastr.success('Operation Successful');
+            } else {
+                toastr.error('Error: @TempData["ErrMsg"]');
+            }
+        });
+    </script>
+}
+
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Type
+                </th>
+                <th>
+                    CreatedBy
+                </th>
+                <th>
+                    Updated On
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.PaymentTypes)
+                {
+                <tr>
+                    <td>
+                        @item.id
+                    </td>
+                    <td>
+                        @item.type
+                    </td>
+                    <td>
+                        @item.createdby
+                    </td>
+                    <td>
+                        @item.lastupdatedon.ToString("dd MMM yyyy hh:mm tt")
+                    </td>
+                    <td>
+                        <a asp-action="UpdateMstPaymentTypes" asp-route-id="@item.id">Edit</a>
+                    </td>
+                    <td>
+                        <a href="javascript:void(0);" class="delete-link" data-paymenttypesid="@item.id">Delete</a>
+                    </td>
+                </tr>
+                }
+        </tbody>
+    </table>
+</div>
+<div class="modal" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <form method="post" asp-action="DeletePaymentTypes" asp-controller="PaymentTypes">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="id" id="paymenttypesid" />
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Confirm Deletion</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    <script type="text/javascript">$(function () {
+            $(document).on('click', '.delete-link', function (e) {
+                e.preventDefault();
+                var paymenttypesid = $(this).attr('data-paymenttypesid');
+                $("#paymenttypesid").val(paymenttypesid);
+                $('#deleteModal').modal("show");
+            });
+
+
+
+        });</script>
+}
+
+

@@ -1,0 +1,123 @@
+﻿@model ParkingLot.Entities.ViewModels.DistrictViewModel
+
+@{
+    ViewData["Title"] = "District";
+}
+
+<link href="toastr.css" rel="stylesheet" />
+<div class="text-justify">
+    <h1>District Index</h1>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <a class="btn btn-primary float-end" href="/district/addnew">Add new</a>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    District Name
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    CreatedBy
+                </th>
+                <th>
+                    Updated On
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Districts)
+            {
+                <tr>
+                    <td>
+                        @item.id
+                    </td>
+                    <td>
+                        @item.districtname
+                    </td>
+                    <td>
+                        @item.description
+                    </td>
+                    <td>
+                        @item.createdby
+                    </td>
+                    <td>
+                        @item.lastupdatedon.ToString("dd MMM yyyy hh:mm tt")
+                    </td>
+                    <td>
+                        <a asp-action="UpdateView" asp-route-id="@item.id">Edit</a>
+                    </td>
+                    <td>
+                        <a href="javascript:void(0);" class="delete-link" data-districtid="@item.id">Delete</a>
+                        @*<a asp-action="DeleteView" class="delete-link" asp-route-id="@item.id" data-districtid="@item.id">Delete</a>*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="modal" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <form method="post" asp-action="deletedistrict" asp-controller="District">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="id" id="districtid" />
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Confirm Deletion</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    <script type="text/javascript">$(function () {
+            $(document).on('click', '.delete-link', function (e) {
+                e.preventDefault();
+                var districtid = $(this).attr('data-districtid');
+                $("#districtid").val(districtid);
+                $('#deleteModal').modal("show");
+            });
+        });</script>
+
+    <script src="toastr.js"></script>
+    <script type="text/javascript">$(function () {
+            var errMsg = $('#errMsg').attr('data-msg');
+
+            if (errMsg != '') {
+                if (errMsg == "success") {
+                    toastr.success('Operation Successfull');
+                }
+                else {
+                    toastr.error('Error: ' + errMsg);
+                }
+            }
+    </script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>
+}

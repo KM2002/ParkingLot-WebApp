@@ -1,0 +1,40 @@
+﻿@model ParkingLot.Entities.Models.utblMstParkingLotPaymentType
+@{
+    ViewData["Title"] = "Add PaymentType";
+}
+<h1>Select PaymentType</h1>
+<div class="row">
+    <div class="col-md-12">
+        @if (@TempData["ErrMsg"] != null)
+        {
+            <div class="text-danger">Error Message: @TempData["ErrMsg"].ToString()</div>
+        }
+        <form method="post" action="/PaymentTypes/AddMstPaymentTypes" novalidate>
+            @Html.AntiForgeryToken()
+            <div class="mb-3">
+                <label>Enter Type</label>
+                @Html.TextBoxFor(m => m.type, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.type, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="mb-3">
+                <label>Enter the creator's name:</label>
+                @Html.TextBoxFor(m => m.createdby, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.createdby, "", new { @class = "text-danger" })
+            </div>
+            <div class="mb-3">
+                <a href="/PaymentTypes/PaymentTypesView" class="btn btn-secondary">Back</a>
+                <button class="btn btn-primary float-end" type="submit">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</div>
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+
+

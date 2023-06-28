@@ -1,0 +1,88 @@
+﻿@model ParkingLot.Entities.ViewModels.ParkingLotsViewModel
+@{
+    ViewData["Title"] = "Search Page";
+    Layout = "_LayoutGeneral"; 
+}
+
+<link href="toastr.css" rel="stylesheet" />
+<div class="text-justify">
+</div>
+<main id="main">
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('/images/parking2.jpeg');">
+        <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+            <h2>ViewMore</h2>
+            <ol>
+                <li><a href="index.html">Home</a></li>
+                <li>View More</li>
+            </ol>
+        </div>
+    </div>
+</main>
+<section class="container">
+    <div class="row">
+        <div class="">
+            <form method="get" action="/home/parkinglots" data-ajax="true" class="form-inline" id="searchForm">
+                <div class="d-flex  flex-row flex-wrap mt-3 mb-3" id="search">
+
+                    <div class="w-50 me-3">
+                        <input type="text" placeholder="Search..." class="form-control" name="searchterm" id="searchBox" />
+                    </div>
+                    <div class="me-3">
+                        <button type="submit" id="search-term" class="btn btn-primary">Search</button>
+                    </div>
+                    <div class="d-none" id="divClearFilter">
+                        <a href="javascript:void(0);" id="clearFilter" class="btn btn-warning">Clear Filter</a>
+                    </div>
+                </div>
+            </form>
+            <div id="parkinglots" class="col-md-12"></div>
+        </div>
+    </div>
+</section>
+
+<div class="back-button">
+    <a href="/home/index" class="btn float-start" id="show-more">
+        <span>Back</span>
+    </a>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">$(function () {
+            var defaultUrl = "/home/parkinglots";
+            var form = $('#searchForm');
+            var getparkinglot = function (url) {
+                var options = {
+                    url: url,
+                    method: "GET",
+                    data: form.serialize(),
+                }
+
+                $.ajax(options).done(function (htmldata) {
+                    $("#parkinglots").empty().append(htmldata);
+                    $(document).on('click', '.paging', function (e) {
+                        e.preventDefault();
+                        var pagedurl = $(this).attr('data-page-url');
+                        getparkinglot(pagedurl);
+                    })
+                });
+            }
+            getparkinglot(defaultUrl);
+            $(document).on('submit', 'form[data-ajax="true"]', function (e) {
+                e.preventDefault();
+
+                $("#divClearFilter").removeClass('d-none');
+                // Get the search query from the input field
+                getparkinglot(defaultUrl); // Pass the search query to the getparkinglot function
+            });
+            $(document).on('click', '#clearFilter', function (e) {
+                e.preventDefault();
+                $('#searchBox').val('');
+                getparkinglot(defaultUrl);
+                $("#divClearFilter").addClass('d-none');
+            })
+        });</script>
+
+
+
+
+}

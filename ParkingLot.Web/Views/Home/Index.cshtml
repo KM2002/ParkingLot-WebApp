@@ -1,0 +1,122 @@
+﻿
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_LayoutGeneral";
+}
+
+<style>
+    :root {
+        --color-default: #364d59;
+        --color-primary: #e5daf7;
+        --color-secondary: #52565e;
+    }
+</style>
+
+<section id="hero" class="hero">
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/images/parking1.webp" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block" style="top:40%">
+                    <h1 data-aos="fade-down">Welcome to <span>ParkingSearch</span></h1>
+                    <p data-aos="fade-up" style="font-size:large">You can look for parking spaces in your desired locations with a simple search.</p>
+                    <center>
+                        <div class="btn-btn border" style="width:fit-content">
+                            <a class="btn-content" href="#get-started">
+                                <span class="btn-title">Get Started</span>
+                            </a>
+                        </div>
+                    </center>
+                </div>
+            </div>
+
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</section>
+
+<main id="main">
+
+    <!-- ======= Get Started Section ======= -->
+    <section id="get-started" class="get-started section-bg mb-5" style="width:100%">
+        <div class="container-fluid p-0">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="/images/parking3.jpg" class="d-block w-100">
+                    <div class="carousel-caption d-none d-md-block" style="top:10%">
+                        <div class="s004">
+                            <form>
+                                <fieldset>
+                                    <legend>LOOKING FOR PARKING SPACES?</legend>
+                                    <div class="inner-form">
+                                        <div class="input-field">
+                                            <input class="form-control" id="choices-text-preset-values" type="text" placeholder="Type to search..." style="border-radius:50px; height:50px;" />
+                                            <button class="btn-search" type="button">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="constructions" class="constructions">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-header">
+                <h2>Available ParkingLots</h2>
+                <p>Select parking spaces from your desired location</p>
+            </div>
+
+            <div class="row gy-4">
+
+                <div class="col-auto" data-aos="fade-up" data-aos-delay="100">
+                    <div id="latestparkinglots"></div>
+                    @*@{Html.RenderPartial("_pvParkingLots", Model); }*@
+                </div><!-- End Card Item -->
+            </div>
+        </div>
+    </section>
+
+    <div class="view-more">
+        <a href="/home/viewmoreparkinglots" class="btn float-start" id="show-more">
+            <span>View More</span>
+            <svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="37" cy="37" r="35.5" stroke="black" stroke-width="3"></circle>
+                <path d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z" fill="black"></path>
+            </svg>
+        </a>
+    </div>
+</main>
+
+
+@section Scripts{
+    <script type="text/javascript">$(function () {
+            var getlatestparkinglot = function () {
+                var options = {
+                    url: "/home/latestparkinglots",
+                    method: "GET",
+                }
+                $.ajax(options).done(function (htmldata) {
+                    $("#latestparkinglots").empty().append(htmldata);
+                });
+            }
+            getlatestparkinglot();
+        });</script>
+
+}
+

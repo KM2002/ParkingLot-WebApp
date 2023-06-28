@@ -1,0 +1,74 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ParkingLot.Entities\ParkingLot.Entities.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.5">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
+    <PackageReference Include="MySql.EntityFrameworkCore" Version="7.0.2" />
+    <PackageReference Include="toastr" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.16" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.19" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.19" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.19" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Views\DistrictView\" />
+    <None Remove="Views\MstFacility\" />
+    <None Remove="Views\PaymentTypes\" />
+    <None Remove="Views\ParkingLotTypes\" />
+    <None Remove="Views\ParkingLot\" />
+    <None Remove="Model\" />
+    <None Remove="Views\Account\" />
+    <None Remove="Views\Dashboard\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\District\" />
+    <Folder Include="Views\MstFacility\" />
+    <Folder Include="Views\PaymentTypes\" />
+    <Folder Include="Views\ParkingLotTypes\" />
+    <Folder Include="Views\ParkingLot\" />
+    <Folder Include="wwwroot\images\" />
+    <Folder Include="Model\" />
+    <Folder Include="Views\Account\" />
+    <Folder Include="Views\Dashboard\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\css\_LayoutGeneral.css" />
+    <None Include="wwwroot\images\parking1.webp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Views\MstFacility\MstFacilitycshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Update="Views\Shared\_Layout.cshtml.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Views\Shared\_Layout.cshtml.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Views\MstFacility\MstFacility.cshtml" />
+    <Content Remove="wwwroot\css\_LayoutGeneral.css" />
+    <Content Remove="wwwroot\images\parking1.webp" />
+    <Content Remove="wwwroot\images\" />
+  </ItemGroup>
+</Project>

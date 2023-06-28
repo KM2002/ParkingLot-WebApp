@@ -1,0 +1,138 @@
+﻿@model ParkingLot.Entities.ViewModels.ParkingLotAddEditModel
+
+@{
+    ViewData["Title"] = "Update ParkingLot";
+    Layout = "_Layout";
+}
+
+<h1>Update ParkingLot</h1>
+
+<div class="row">
+    <div class="col-md-12">
+        @if (TempData["ErrMsg"] != null)
+        {
+            <div class="text-danger">Error Message: @TempData["ErrMsg"].ToString()</div>
+        }
+    <form method="post" asp-action="UpdateParkingLots" asp-controller="ParkingLot" novalidate>
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="utblParkingLot.id" />
+
+        <div class="mb-3">
+            <label>Enter Name</label>
+            @Html.TextBoxFor(m => m.utblParkingLot.name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.utblParkingLot.name, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="mb-3">
+            <label>Enter Location</label>
+            @Html.TextBoxFor(m => m.utblParkingLot.location, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.utblParkingLot.location, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="mb-3">
+            <label>Enter Latitude</label>
+            @Html.TextBoxFor(m => m.utblParkingLot.latitude, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.utblParkingLot.latitude, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="mb-3">
+            <label>Enter Longitude</label>
+            @Html.TextBoxFor(m => m.utblParkingLot.longitude, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.utblParkingLot.longitude, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="mb-3">
+            <label>Enter Opening time</label>
+            @Html.TextBoxFor(m => m.utblParkingLot.openingtime, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.utblParkingLot.openingtime, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="mb-3">
+            <label>Enter Closing time</label>
+            @Html.TextBoxFor(m => m.utblParkingLot.closingtime, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.utblParkingLot.closingtime, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="mb-3">
+            <label>Enter Closed on</label>
+            @Html.TextBoxFor(m => m.utblParkingLot.closedon, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.utblParkingLot.closedon, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="mb-3">
+            <label>Enter Owner name</label>
+            @Html.TextBoxFor(m => m.utblParkingLot.ownername, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.utblParkingLot.ownername, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="mb-3">
+            <label>Enter Contact no</label>
+            @Html.TextBoxFor(m => m.utblParkingLot.contactno, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.utblParkingLot.contactno, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="mb-3">
+            <label>Enter Email id</label>
+            @Html.TextBoxFor(m => m.utblParkingLot.emailid, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.utblParkingLot.emailid, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="mb-3">
+            <label>Enter District id </label>
+            @Html.DropDownListFor(m => m.utblParkingLot.district_id, new SelectList(Model.Districts, "id", "districtname"), " --- Please select district --- ", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.utblParkingLot.district_id, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="mb-3">
+            <label>Enter payment type id</label>
+            @Html.DropDownListFor(m => m.utblParkingLot.paymenttype_id, new SelectList(Model.PaymentTypes, "id", "type"), " --- Please select payment type --- ", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.utblParkingLot.paymenttype_id, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-12">
+            <label class="fw-bold">Select Facilities</label>
+            @for (int i = 0; i < @Model.Facilities?.Count(); i++)
+            {
+                <div class="col-md-3">
+                    <input type="hidden" asp-for="@Model.SelectedFacilities[i].FacilityID" value="@Model.Facilities[i].id" />
+                    @Html.CheckBoxFor(m => m.SelectedFacilities[i].IsChecked)
+                    <label asp-for="@Model.SelectedFacilities[i].IsChecked">@Model.Facilities[i].facility</label>
+                </div>
+            }
+        </div>
+        <div class="col-md-12">
+            <label class="fw-bold">Select Type</label>
+            @for (int i = 0; i < @Model.ParkingLotTypes?.Count(); i++)
+            {
+                <div class="col-md-3">
+                    <input type="hidden" asp-for="@Model.SelectedTypes[i].TypeID" value="@Model.ParkingLotTypes[i].id" />
+                    @Html.CheckBoxFor(m => m.SelectedTypes[i].IsChecked)
+                    <label asp-for="@Model.SelectedTypes[i].IsChecked">@Model.ParkingLotTypes[i].type</label>
+                </div>
+            }
+        </div>
+
+        <div class="mb-3">
+            <label>Enter the creator's name:</label>
+            @Html.TextBoxFor(m => m.utblParkingLot.createdby, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.utblParkingLot.createdby, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Update</button>
+            <a href="/ParkingLot/ParkingLotView" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+    </div>
+</div>
