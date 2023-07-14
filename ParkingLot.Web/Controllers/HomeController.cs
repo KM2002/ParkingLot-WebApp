@@ -20,12 +20,6 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        //ParkingLotsViewModel objmodel = new ParkingLotsViewModel();
-        //objmodel.CustomParkingLot = _parkingLotService.GetParkingLots();
-        //ParkingLotsViewModel objmodel =
-        //_parkingLotService.GetParkingLotsPaged(PageNo, PageSize, searchTerm);
-        //ViewBag.CurrentPage = PageNo;
-        //ViewBag.CurrentPSize = PageSize;
         return View();
     }
     public IActionResult LatestParkingLots(int PageNo = 1, int PageSize = 10, string searchTerm = "")
@@ -62,8 +56,11 @@ public class HomeController : Controller
         return View();
     }
 
-
-    public IActionResult Privacy()
+    public IActionResult About()
+    {
+        return View();
+    }
+    public IActionResult Contact()
     {
         return View();
     }
@@ -73,5 +70,20 @@ public class HomeController : Controller
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
+
+    public async Task<JsonResult> GetAllParkingLots()
+    {
+        List<CustomViewModel> model =
+        await _parkingLotService.GetParkingLots();
+        return Json(new { parkinglots = model });
+    }
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> ContactUs(string name,string mobileno,string email,string message)
+    {
+        //call sendemailfunction
+        return Json("true");
+    }
+
 }
 

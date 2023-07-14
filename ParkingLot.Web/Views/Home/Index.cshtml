@@ -1,4 +1,4 @@
-﻿
+﻿@model ParkingLot.Entities.ViewModels.ParkingLotsViewModel
 @{
     ViewData["Title"] = "Home Page";
     Layout = "_LayoutGeneral";
@@ -10,6 +10,10 @@
         --color-primary: #e5daf7;
         --color-secondary: #52565e;
     }
+
+    #map {
+        height: 1000px;
+    }
 </style>
 
 <section id="hero" class="hero">
@@ -18,7 +22,7 @@
             <div class="carousel-item active">
                 <img src="/images/parking1.webp" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block" style="top:40%">
-                    <h1 data-aos="fade-down">Welcome to <span>ParkingSearch</span></h1>
+                    <h1 data-aos="fade-down">Welcome to <span>ParkingSpot Ventures</span></h1>
                     <p data-aos="fade-up" style="font-size:large">You can look for parking spaces in your desired locations with a simple search.</p>
                     <center>
                         <div class="btn-btn border" style="width:fit-content">
@@ -45,8 +49,11 @@
 <main id="main">
 
     <!-- ======= Get Started Section ======= -->
-    <section id="get-started" class="get-started section-bg mb-5" style="width:100%">
-        <div class="container-fluid p-0">
+    <section id="get-started" class="get-started section-bg mb-5" style="width:100%;">
+
+        <div id="map"></div>
+
+        @*<div class="container-fluid p-0">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="/images/parking3.jpg" class="d-block w-100">
@@ -71,7 +78,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>*@
     </section>
 
     <section id="constructions" class="constructions">
@@ -90,8 +97,9 @@
                 </div><!-- End Card Item -->
             </div>
         </div>
-    </section>
 
+    </section>
+    
     <div class="view-more">
         <a href="/home/viewmoreparkinglots" class="btn float-start" id="show-more">
             <span>View More</span>
@@ -105,7 +113,8 @@
 
 
 @section Scripts{
-    <script type="text/javascript">$(function () {
+    <script type="text/javascript">
+        $(function () {
             var getlatestparkinglot = function () {
                 var options = {
                     url: "/home/latestparkinglots",
@@ -115,8 +124,57 @@
                     $("#latestparkinglots").empty().append(htmldata);
                 });
             }
-            getlatestparkinglot();
-        });</script>
+    getlatestparkinglot();
+
+    var loadmaps = function () {
+        var options = {
+            url: "/home/getallparkinglots",
+            method: "GET",
+            dataType:"json"
+        }
+        $.ajax(options).done(function (data) {
+
+            var map = L.map('map', { scrollWheelZoom: false, touchZoom: true }).setView([27.33353937970877, 88.60175328243812], 15);
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+
+            $.each(data.parkinglots, function (i, item) {
+                if (item.type == "Free") {
+                    var Myicon = L.icon({
+                        iconUrl: '/images/greenicon.jpg',
+                        iconSize: [23, 30],
+                        iconAnchor: [22, 94],
+                        popupAnchor: [13, -90],
+                    });
+                }
+                if (item.type == "Paid") {
+                        Myicon = L.icon({
+                        iconUrl: '/images/redicon.jpg',
+                        iconSize: [23, 30],
+                        iconAnchor: [22, 94],
+                        popupAnchor: [13, -90],
+                    });
+                }
+                if (item.type == "Free/Paid") {
+                        Myicon = L.icon({
+                        iconUrl: '/images/yellowicon.jpg',
+                        iconSize: [23, 30],
+                        iconAnchor: [22, 94],
+                        popupAnchor: [13, -90],
+                    });
+                }
+              
+                L.marker([item.latitude, item.longitude], {icon: Myicon}).addTo(map).bindPopup("<b>"+item.name+"</b><br>"+item.type+"<br> <a href="+"/home/ViewDetails?id="+item.id+" class="+"btn btn-primary"+" target="+"_blank"+">View Details</a>").openPopup();
+            })
+        });
+    }
+    loadmaps();
+        });
+    </script>
+
+  
 
 }
 

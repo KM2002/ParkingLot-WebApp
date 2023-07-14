@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using ParkingLot.Entities.Interfaces;
 using ParkingLot.Entities.Models;
 using ParkingLot.Entities.ViewModels;
@@ -25,10 +26,16 @@ namespace ParkingLot.Web.Controllers
 		}
 
         public IActionResult ParkingLotView()
+        { 
+            return View();
+        }
+        public IActionResult ParkingLots(int PageNo = 1, int PageSize = 10, string searchTerm = "")
         {
-            ParkingLotsViewModel objmodel = new ParkingLotsViewModel();
-            objmodel.CustomParkingLot = _parkingLotService.GetParkingLots();
-            return View(objmodel);
+            ParkingLotsViewModel objmodel =
+            _parkingLotService.GetParkingLotsPaged(PageNo, PageSize, searchTerm);
+            ViewBag.CurrentPage = PageNo;
+            ViewBag.CurrentPSize = PageSize;
+            return PartialView("_pvParkingLotView", objmodel);
         }
 
         [HttpGet]

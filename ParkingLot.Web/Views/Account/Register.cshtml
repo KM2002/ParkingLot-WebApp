@@ -16,7 +16,7 @@
 
                             <form method="post" action="/account/register">
                                 @Html.AntiForgeryToken()
-                                @Html.ValidationSummary(true)
+                                @Html.ValidationSummary()
                                 <div class="form-outline mb-4">
                                     @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })

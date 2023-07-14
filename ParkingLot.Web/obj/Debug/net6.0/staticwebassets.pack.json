@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets/css/.DS_Store"
     },
     {
+      "Id": "/Users/khushm/Documents/netcore_projects/ParkingLot.Web/ParkingLot.Web/wwwroot/css/Dashboard.css",
+      "PackagePath": "staticwebassets/css/Dashboard.css"
+    },
+    {
       "Id": "/Users/khushm/Documents/netcore_projects/ParkingLot.Web/ParkingLot.Web/wwwroot/css/site.css",
       "PackagePath": "staticwebassets/css/site.css"
     },
@@ -29,6 +33,18 @@
       "PackagePath": "staticwebassets/images/.DS_Store"
     },
     {
+      "Id": "/Users/khushm/Documents/netcore_projects/ParkingLot.Web/ParkingLot.Web/wwwroot/images/banner.jpeg",
+      "PackagePath": "staticwebassets/images/banner.jpeg"
+    },
+    {
+      "Id": "/Users/khushm/Documents/netcore_projects/ParkingLot.Web/ParkingLot.Web/wwwroot/images/blue.jpg",
+      "PackagePath": "staticwebassets/images/blue.jpg"
+    },
+    {
+      "Id": "/Users/khushm/Documents/netcore_projects/ParkingLot.Web/ParkingLot.Web/wwwroot/images/greenicon.jpg",
+      "PackagePath": "staticwebassets/images/greenicon.jpg"
+    },
+    {
       "Id": "/Users/khushm/Documents/netcore_projects/ParkingLot.Web/ParkingLot.Web/wwwroot/images/parking2.jpeg",
       "PackagePath": "staticwebassets/images/parking2.jpeg"
     },
@@ -39,6 +55,14 @@
     {
       "Id": "/Users/khushm/Documents/netcore_projects/ParkingLot.Web/ParkingLot.Web/wwwroot/images/parkingicon.png",
       "PackagePath": "staticwebassets/images/parkingicon.png"
+    },
+    {
+      "Id": "/Users/khushm/Documents/netcore_projects/ParkingLot.Web/ParkingLot.Web/wwwroot/images/redicon.jpg",
+      "PackagePath": "staticwebassets/images/redicon.jpg"
+    },
+    {
+      "Id": "/Users/khushm/Documents/netcore_projects/ParkingLot.Web/ParkingLot.Web/wwwroot/images/yellowicon.jpg",
+      "PackagePath": "staticwebassets/images/yellowicon.jpg"
     },
     {
       "Id": "/Users/khushm/Documents/netcore_projects/ParkingLot.Web/ParkingLot.Web/wwwroot/js/site.js",

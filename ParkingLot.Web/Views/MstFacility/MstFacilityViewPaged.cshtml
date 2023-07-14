@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "MstFacility";
 }
-
+<link href="toastr.css" rel="stylesheet" />
 <div class="text-justify">
     <h1>MstFacility</h1>
 </div>
@@ -14,7 +14,7 @@
 </div>
 @if (TempData["ErrMsg"] != null)
 {
-        <script type="text/javascript">
+    <script type="text/javascript">
             $(document).ready(function ()
             {
                 if (TempData["ErrMsg"].ToString() == "success")
@@ -26,7 +26,7 @@
                     toastr.success('Error: @TempData["ErrMsg"]');
                 }
             });
-        </script>
+    </script>
 }
 
 <div class="table-responsive">
@@ -130,6 +130,20 @@
                 $('#deleteModal').modal("show");
             });
         });</script>
+
+    <script src="toastr.js"></script>
+    <script type="text/javascript">$(function () {
+            var errMsg = $('#errMsg').attr('data-msg');
+
+            if (errMsg != '') {
+                if (errMsg == "success") {
+                    toastr.success('Operation Successfull');
+                }
+                else {
+                    toastr.error('Error: ' + errMsg);
+                }
+            }
+    </script>
 }
 
 

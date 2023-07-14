@@ -25,6 +25,7 @@ builder.Services.AddTransient<IMstPaymentTypeService, PaymentTypeBll>();
 builder.Services.AddTransient<IParkingLotTypesService, ParkingLotTypesBll>();
 builder.Services.AddTransient<IParkingLotFacilitiesService, FacilityBll>();
 builder.Services.AddTransient<IParkingLotService, ParkingLotBll>();
+builder.Services.AddTransient<IUsersService, UsersBll>();
 
 builder.Services.AddIdentity<ApplicationUser,IdentityRole>().AddEntityFrameworkStores<ApplicationIdentityDbContext>();
 builder.Services.AddRazorPages();
@@ -56,7 +57,7 @@ builder.Services.ConfigureApplicationCookie(options =>
     // Cookie settings
     options.Cookie.HttpOnly = true;
     options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
-    options.Cookie.SameSite = SameSiteMode.None;
+    options.Cookie.Path = "/; SameSiteMode=None";
     options.LoginPath = "/Account/Login";
     options.AccessDeniedPath = "/Account/AccessDenied";
     options.SlidingExpiration = true;
@@ -78,12 +79,13 @@ else
 
 
 //app.UseHttpsRedirection();
+app.UseAuthentication();
 app.UseStaticFiles();
 
 app.UseRouting();
 
 app.UseAuthorization();
-app.UseAuthentication();
+
 
 app.MapRazorPages();
 

@@ -20,12 +20,16 @@ namespace ParkingLot.Entities.Data
 		public DbSet<ResponseModel> ResponseModels { get; set; }
 		public DbSet<SelectFacilityModel> SelectFacilityModels { get; set; }
 		public DbSet<SelectParkingLotTypeModel> SelectParkingLotTypeModels { get; set; }
+		public DbSet<Users> users { get; set; }
+		public DbSet<ViewUser> viewUser { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CustomViewModel>().ToView("CustomViewModel").HasNoKey();
             modelBuilder.Entity<ResponseModel>().ToView("ResponseModel").HasNoKey();
             modelBuilder.Entity<SelectFacilityModel>().ToView("SelectFacilityModel").HasNoKey();
             modelBuilder.Entity<SelectParkingLotTypeModel>().ToView("SelectParkingLotTypeModel").HasNoKey();
+			modelBuilder.Entity<Users>().ToView("Users").HasNoKey();
+			modelBuilder.Entity<ViewUser>().ToView("ViewUser").HasNoKey();
         }
     }
 }

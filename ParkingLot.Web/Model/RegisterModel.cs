@@ -22,7 +22,7 @@ namespace ParkingLot.Web.Model
         [Required(ErrorMessage = "Password is required...")]
         [Display(Name = "Password")]
         [DataType(DataType.Password)]
-        
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{6,15}$", ErrorMessage = "Password doesn't fulfill the given requirement!")]
         [Compare("Password", ErrorMessage = "The Passwords are not matching!")]
         public string ConfirmPassword { get; set; } = default!;
     }

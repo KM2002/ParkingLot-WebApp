@@ -1,55 +1,45 @@
 ﻿<Properties StartupConfiguration="{FA26924E-3311-4286-B9B7-1DA1BF1FA4C5}|Default">
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ParkingLot.Web/Controllers/AccountController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/khushm/Documents/netcore_projects/ParkingLot.Web/ParkingLot.Web/Controllers/DashboardController.cs" relfile="ParkingLot.Web/Controllers/DashboardController.cs" line="32" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="ParkingLot.Web/Controllers/DashboardController.cs">
     <Files>
-      <File FileName="ParkingLot.Web/Program.cs" Line="21" Column="1" />
-      <File FileName="ParkingLot.Web/Controllers/HomeController.cs" Line="1" Column="1" />
-      <File FileName="ParkingLot.Web/Controllers/AccountController.cs" Line="38" Column="39" />
-      <File FileName="ParkingLot.Web/Model/LoginModel.cs" />
-      <File FileName="ParkingLot.Web/Model/RegisterModel.cs" Line="25" Column="9" />
-      <File FileName="ParkingLot.Web/Views/Account/Login.cshtml" Line="2" Column="1" />
-      <File FileName="ParkingLot.Web/Views/Shared/_LayoutGeneral.cshtml" Line="50" Column="30" />
-      <File FileName="ParkingLot.Web/wwwroot/css/_LayoutGeneral.css" Line="1" Column="1" />
-      <File FileName="ParkingLot.Web/Views/Home/Index.cshtml" Line="5" Column="2" />
-      <File FileName="ParkingLot.Web/Views/Account/Register.cshtml" Line="6" Column="1" />
-      <File FileName="ParkingLot.Web/Views/Home/_pvParkingLots.cshtml" Line="1" Column="1" />
-      <File FileName="ParkingLot.Web/Views/Home/ViewDetails.cshtml" Line="2" Column="1" />
-      <File FileName="ParkingLot.Web/Views/Home/ViewMoreParkingLots.cshtml" Line="4" Column="32" />
-      <File FileName="ParkingLot.Web/Views/District/DistrictView.cshtml" Line="4" Column="36" />
-      <File FileName="ParkingLot.Web/Views/Shared/_Layout.cshtml" Line="89" Column="46" />
-      <File FileName="ParkingLot.Web/Views/_ViewStart.cshtml" Line="2" Column="24" />
-      <File FileName="ParkingLot.Web/Views/_ViewImports.cshtml" Line="1" Column="1" />
-      <File FileName="ParkingLot.Web/Views/Shared/_ValidationScriptsPartial.cshtml" Line="1" Column="1" />
-      <File FileName="ParkingLot.Web/Views/Shared/_Layout.cshtml.css" Line="1" Column="1" />
-      <File FileName="ParkingLot.Web/Views/District/AddNew.cshtml" Line="40" Column="4" />
-      <File FileName="ParkingLot.Web/Controllers/DistrictController.cs" Line="13" Column="33" />
-      <File FileName="ParkingLot.Web/Controllers/ParkingLotController.cs" Line="10" Column="4" />
-      <File FileName="ParkingLot.Web/Controllers/ParkingLotTypesController.cs" Line="11" Column="33" />
-      <File FileName="ParkingLot.Web/Controllers/PaymentTypesController.cs" Line="11" Column="33" />
-      <File FileName="ParkingLot.Web/Controllers/MstFacilityController.cs" Line="11" Column="33" />
-      <File FileName="ParkingLot.Web/Controllers/DashboardController.cs" Line="23" Column="27" />
-      <File FileName="ParkingLot.Web/Views/Dashboard/DistrictView.cshtml" Line="11" Column="1" />
-      <File FileName="ParkingLot.Web/Views/Home/Privacy.cshtml" Line="3" Column="31" />
-      <File FileName="ParkingLot.Web/Model/ApplicationIdentityDbContext.cs" Line="12" Column="1" />
+      <File FileName="ParkingLot.Web/Views/Home/Index.cshtml" Line="147" Column="38" />
+      <File FileName="ParkingLot.Web/Views/ParkingLot/_pvParkingLotView.cshtml" Line="94" Column="16" />
+      <File FileName="ParkingLot.Web/Views/ParkingLot/AddParkingLots.cshtml" Line="1" Column="1" />
+      <File FileName="ParkingLot.Web/Controllers/DashboardController.cs" Line="38" Column="74" />
+      <File FileName="ParkingLot.Entities/Bll/ParkingLotBll.cs" Line="20" Column="50" />
+      <File FileName="ParkingLot.Web/Views/Dashboard/Index.cshtml" Line="41" Column="55" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ParkingLot.Web" expanded="True">
-            <Node name="ParkingLot.Web" expanded="True" selected="True">
-              <Node name="Controllers" expanded="True" />
+            <Node name="ParkingLot.Entities">
+              <Node name="Bll" expanded="True" />
+              <Node name="Models" expanded="True" />
+            </Node>
+            <Node name="ParkingLot.Web">
+              <Node name="Controllers" expanded="True">
+                <Node name="DashboardController.cs" selected="True" />
+              </Node>
+              <Node name="Migrations" expanded="True" />
               <Node name="Model" expanded="True" />
-              <Node name="Views" expanded="True">
+              <Node name="Views">
                 <Node name="Account" expanded="True" />
                 <Node name="Dashboard" expanded="True" />
-                <Node name="District" expanded="True" />
                 <Node name="Home" expanded="True" />
+                <Node name="ParkingLot" expanded="True" />
                 <Node name="Shared" expanded="True">
                   <Node name="_Layout.cshtml" expanded="True" />
                 </Node>
               </Node>
-              <Node name="wwwroot" expanded="True">
+              <Node name="wwwroot">
                 <Node name="css" expanded="True" />
+                <Node name="images" expanded="True" />
               </Node>
               <Node name="appsettings.json" expanded="True" />
             </Node>
@@ -58,13 +48,7 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/khushm/Documents/netcore_projects/ParkingLot.Web/ParkingLot.Web/Controllers/AccountController.cs" relfile="ParkingLot.Web/Controllers/AccountController.cs" line="76" column="1" />
-      <Breakpoint file="/Users/khushm/Documents/netcore_projects/ParkingLot.Web/ParkingLot.Web/Controllers/AccountController.cs" relfile="ParkingLot.Web/Controllers/AccountController.cs" line="52" column="1" />
-    </BreakpointStore>
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.ParkingLot.Web PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.ItemProperties.ParkingLot.Web PreferredExecutionTarget="/Applications/Firefox.app" />
+  <MultiItemStartupConfigurations />
 </Properties>

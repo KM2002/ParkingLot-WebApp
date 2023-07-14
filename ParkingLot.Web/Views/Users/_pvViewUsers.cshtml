@@ -1,0 +1,73 @@
+﻿
+@model ParkingLot.Entities.ViewModels.ParkingLotsViewModel
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead class="table-primary">
+            <tr>
+                <th>
+                    First Name
+                </th>
+                <th>
+                    Last Name
+                </th>
+                <th>
+                    User Email
+                </th>
+                <th>
+                    User Role
+                </th>
+                <th>
+                    Update
+                </th>
+                <th>
+                    Delete
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Users)
+            {
+                <tr>
+                    <td>
+                        @item.firstname
+                    </td>
+                    <td>
+                        @item.lastname
+                    </td>
+                    <td>
+                        @item.email
+                    </td>
+                    <td>
+                        @item.name
+                    </td>
+                    <td>
+                        <a asp-action="UpdateUsers" asp-controller="Users" asp-route-id="@item.id">Edit</a>
+                    </td>
+                    <td>
+                        <a href="javascript:void(0);" class="delete-link" data-userid="@item.id">Delete</a>
+                        @*<a asp-action="DeleteView" class="delete-link" asp-route-id="@item.id" data-districtid="@item.id">Delete</a>*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="row text-center">
+        <div id="paging" style="z-index:999">
+
+            @for (int i = 1; i <= Math.Ceiling((decimal)Model.TotalCount / (decimal)ViewBag.CurrentPSize); i++)
+            {
+                if ((int)ViewBag.CurrentPage == @i)
+                {
+                    <a class="active btn btn-sm btn-primary paging" href="javascript:void(0);" data-page-url="/users/viewuserspaged?pageno=@i&pagesize=10">@i</a>
+                }
+                else
+                {
+                    <a class="btn btn-sm btn-secondary paging" href="javascript:void(0);" data-page-url="/users/viewuserspaged?pageno=@i&pagesize=10">@i</a>
+                }
+            }
+
+        </div>
+    </div>
+</div>
+

@@ -17,10 +17,19 @@ namespace ParkingLot.Entities.Bll
 			_applicationDbContext = applicationDbContext;
 		}
 
-        public List<CustomViewModel> GetParkingLots()
+        //public async Task<UserCount> GetUserCount()
+        //{
+           
+        //    UserCount model = new UserCount();
+        //    var response =await _applicationDbContext.userCounts.FromSqlRaw("CALL CountUsers()").ToListAsync();
+        //    model = response.FirstOrDefault();
+        //    return model;
+        //}
+
+        public async Task<List<CustomViewModel>> GetParkingLots()
         {
-            var response = _applicationDbContext.customViewModels.FromSqlRaw("CALL GetParkingLots()").ToList();
-            return response;
+            return  await _applicationDbContext.customViewModels.FromSqlRaw("CALL GetParkingLots").ToListAsync();
+            
         }
 
         public ParkingLotsViewModel GetParkingLotsPaged(int Pageno = 1, int Psize = 10, string searchterm="")
@@ -30,8 +39,8 @@ namespace ParkingLot.Entities.Bll
             var parPageno = new MySqlParameter("@pno", Pageno);
             var parsize = new MySqlParameter("@psize", Psize);
             var parsterm = new MySqlParameter("@sterm", searchterm??"");
-            model.ParkingLots = _applicationDbContext.utblParkingLots.FromSqlRaw("CALL GetParkingLotsPaged(@pno,@psize,@sterm)", new object[] { parPageno, parsize, parsterm }).ToList();
-if(searchterm=="")
+            model.CustomParkingLot = _applicationDbContext.customViewModels.FromSqlRaw("CALL GetParkingLotsPaged(@pno,@psize,@sterm)", new object[] { parPageno, parsize, parsterm }).ToList();
+            if(searchterm=="")
                 { 
                 model.TotalCount = _applicationDbContext.utblParkingLots.Count();
                 }

@@ -47,3 +47,88 @@ button.accept-policy {
   line-height: 60px;
 }
 
+/*Dashboard banner*/
+.breadcrumbs {
+    padding: 140px 0 60px 0;
+    min-height: 30vh;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+    .breadcrumbs:before {
+        content: "";
+        background-color: rgba(0, 0, 0, 0.6);
+        position: absolute;
+        inset: 0;
+    }
+
+    .breadcrumbs h2 {
+        font-size: 56px;
+        font-weight: 500;
+        color: #afb6fa;
+        font-family: var(--font-secondary);
+    }
+
+    .breadcrumbs ol {
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+        padding: 0 0 10px 0;
+        margin: 0;
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--color-primary);
+    }
+
+        .breadcrumbs ol a {
+            color: rgba(255, 255, 255, 0.8);
+            transition: 0.3s;
+        }
+
+            .breadcrumbs ol a:hover {
+                text-decoration: underline;
+            }
+
+        .breadcrumbs ol li + li {
+            padding-left: 10px;
+        }
+
+            .breadcrumbs ol li + li::before {
+                display: inline-block;
+                padding-right: 10px;
+                color: #fff;
+                content: "/";
+            }
+
+
+.hero .carousel-item::before {
+    content: "";
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    inset: 0;
+}
+
+
+#get-started .carousel-item::before {
+    content: "";
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    inset: 0;
+}
+
+.header {
+    z-index: 997;
+    position: absolute;
+    padding: 30px 0;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.offcanvas-backdrop.show {
+    opacity: 50;
+    background-color: rgba(15,23,42,.5);
+    backdrop-filter: blur(8px);
+}

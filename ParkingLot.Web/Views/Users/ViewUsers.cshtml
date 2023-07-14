@@ -1,0 +1,94 @@
+﻿@model ParkingLot.Entities.ViewModels.ParkingLotsViewModel
+@{
+    ViewData["Title"] = "ViewUsers";
+}
+<link href="toastr.css" rel="stylesheet" />
+<div class="row">
+    <div class="col-md-12">
+        @if (TempData["ErrMsg"] != null)
+        {
+            <div class="text-danger">Message: @TempData["ErrMsg"].ToString()</div>
+        }
+    </div>
+</div>
+<div class="text-justify">
+    <h1>Manage Users</h1>
+</div>
+<div class="row mb-4">
+    <div class="col-md-12">
+        <a class="btn btn-primary float-end" href="/account/registeradmin">Add Admin</a>
+        <a class="btn btn-primary float-end me-4" href="/account/register">Add User</a>
+    </div>
+</div>
+<div id="viewuserspaged" class="col-md-12">
+</div>
+    
+<div class="modal" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <form method="post" asp-action="DeleteUser" asp-controller="Users">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="id" id="userid" />
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Confirm Deletion</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    <script type="text/javascript">$(function () {
+            $(document).on('click', '.delete-link', function (e) {
+                e.preventDefault();
+                var userid = $(this).attr('data-userid');
+                $("#userid").val(userid);
+                $('#deleteModal').modal("show");
+            });
+        });</script>
+
+    <script src="toastr.js"></script>
+    <script type="text/javascript">$(function () {
+            var errMsg = $('#errMsg').attr('data-msg');
+
+            if (errMsg != '') {
+                if (errMsg == "success") {
+                    toastr.success('Operation Successfull');
+                }
+                else {
+                    toastr.error('Error: ' + errMsg);
+                }
+            }
+    </script>
+
+    <script type="text/javascript">$(function () {
+            var defaultUrl = "/users/viewuserspaged";
+            var form = $('#searchForm');
+
+            var getusers = function (url) {
+                var options = {
+                    url: url,
+                    method: "GET",
+                    data: form.serialize(),
+                }
+                $.ajax(options).done(function (htmldata) {
+                    $("#viewuserspaged").empty().append(htmldata);
+                    $(document).on('click', '.paging', function (e) {
+                        e.preventDefault();
+                        var pagedurl = $(this).attr('data-page-url');
+                        getusers(pagedurl);
+                    })
+                });
+            }
+            getusers(defaultUrl);
+        });</script>
+}
+
+

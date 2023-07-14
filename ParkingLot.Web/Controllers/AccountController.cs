@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Text;
 using System.Text.Encodings.Web;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ParkingLot.Web.Controllers;
 
@@ -39,10 +40,10 @@ public class AccountController : Controller
     }
     public IActionResult Login()
     {
-        //if(User.Identity.IsAuthenticated)
-        //{
-        //    return Redirect("~/dashboard");
-        //}
+        if (User.Identity.IsAuthenticated)
+        {
+            return Redirect("~/dashboard");
+        }
         return View();
     }
 
@@ -50,6 +51,8 @@ public class AccountController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Login(LoginModel data)
     {
+        
+        try { 
         if(ModelState.IsValid)
         {
             var user = await _userManager.FindByEmailAsync(data.UserName);
@@ -59,11 +62,17 @@ public class AccountController : Controller
                 var signinresult = _signInManager.PasswordSignInAsync(user, data.Password, true, true);
                 if(signinresult.Result.Succeeded)
                 {
-                    return Redirect("~/dashboard");
+                    return RedirectToAction("Index","Dashboard");
                 }
             }
         }
+
         return View(data);
+        }
+        catch(Exception ex)
+        {
+            throw ex;
+        }
     }
     public async Task<IActionResult> Register()
     {
@@ -78,7 +87,7 @@ public class AccountController : Controller
 
         if (ModelState.IsValid)
         {
-            var user = new ApplicationUser { UserName = data.Email, Email = data.Email };
+            var user = new ApplicationUser { UserName = data.Email, Email = data.Email,FirstName=data.FirstName, LastName=data.LastName };
             var result = await _userManager.CreateAsync(user, data.Password);
             if(result.Succeeded)
             {
@@ -102,6 +111,43 @@ public class AccountController : Controller
     public IActionResult ConfirmRegistration(ApplicationUser newuser)
     {
         return View();
+    }
+
+
+    [Authorize(Roles ="Admin")]
+    public async Task<IActionResult> RegisterAdmin()
+    {
+        return View();
+    }
+
+    [Authorize(Roles = "Admin")]
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> RegisterAdmin(RegisterModel data)
+    {
+        //var ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
+        if (ModelState.IsValid)
+        {
+            var user = new ApplicationUser { UserName = data.Email, Email = data.Email, FirstName = data.FirstName, LastName = data.LastName };
+            var result = await _userManager.CreateAsync(user, data.Password);
+            if (result.Succeeded)
+            {
+                var roleexists = await _roleManager.RoleExistsAsync("Admin");
+                if (roleexists)
+                {
+                    await _userManager.AddToRoleAsync(user, "Admin");
+                }
+                else
+                {
+                    var roleResult = await _roleManager.CreateAsync(new IdentityRole("Admin"));
+                    await _userManager.AddToRoleAsync(user, "Admin");
+                }
+                return RedirectToAction("ConfirmRegistration", new { newuser = user });
+            }
+        }
+        return View(data);
+
     }
 
 }

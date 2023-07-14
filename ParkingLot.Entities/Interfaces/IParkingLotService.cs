@@ -7,7 +7,7 @@ namespace ParkingLot.Entities.Interfaces
 	public interface IParkingLotService
 	{
         CustomViewModel GetParkingLotDetailsbyId(int id);
-        List<CustomViewModel> GetParkingLots();
+        Task<List<CustomViewModel>> GetParkingLots();
         ParkingLotsViewModel GetParkingLotsPaged(int Pageno, int Psize, string searchterm);
 		utblParkingLot GetParkingLotsbyid(int id);
 		Task<ResponseModel> AddParkingLots(ParkingLotAddEditModel model);
@@ -15,6 +15,7 @@ namespace ParkingLot.Entities.Interfaces
 		Task<ResponseModel> DeleteParkingLots(int id);
 		List<SelectFacilityModel> GetSelectedFacilitiesbyid(int id);
 		List<SelectParkingLotTypeModel> GetSelectParkingLotTypesbyid(int id);
+		//Task<UserCount> GetUserCount();
 
     }
 }

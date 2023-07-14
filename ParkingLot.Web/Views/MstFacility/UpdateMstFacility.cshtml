@@ -5,7 +5,7 @@
 }
 
 <h1>Update Facility</h1>
-
+<link href="toastr.css" rel="stylesheet" />
 <div class="row">
     <div class="col-md-12">
         @if (TempData["ErrMsg"] != null)
@@ -35,3 +35,18 @@
         </form>
     </div>
 </div>
+@section Scripts{
+    <script src="toastr.js"></script>
+    <script type="text/javascript">$(function () {
+            var errMsg = $('#errMsg').attr('data-msg');
+
+            if (errMsg != '') {
+                if (errMsg == "success") {
+                    toastr.success('Operation Successfull');
+                }
+                else {
+                    toastr.error('Error: ' + errMsg);
+                }
+            }
+    </script>
+}

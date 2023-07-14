@@ -37,6 +37,7 @@
     <None Remove="Model\" />
     <None Remove="Views\Account\" />
     <None Remove="Views\Dashboard\" />
+    <None Remove="Views\Users\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\District\" />
@@ -48,6 +49,7 @@
     <Folder Include="Model\" />
     <Folder Include="Views\Account\" />
     <Folder Include="Views\Dashboard\" />
+    <Folder Include="Views\Users\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="wwwroot\css\_LayoutGeneral.css" />
@@ -57,9 +59,6 @@
     <None Update="Views\MstFacility\MstFacilitycshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </None>
-    <None Update="Views\Shared\_Layout.cshtml.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Views\Shared\_Layout.cshtml.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -18,8 +18,10 @@ namespace ParkingLot.Entities.ViewModels
 		public IEnumerable<utblMstParkingLotPaymentType>? PaymentTypes { get; set; } = null!;
 		public List<utblMstParkingLotType>? ParkingLotTypes { get; set; } = null!;
         public List<utblMstParkingLotFacility>? Facilities { get; set; } = null!;
+        public List<Users> Users { get; set; }
 
     }
+
 	public class SelectFacilityModel
 	{
 		public int FacilityID { get; set; }
@@ -32,5 +34,10 @@ namespace ParkingLot.Entities.ViewModels
 		public string? Type { get; set; }
         public bool IsChecked { get; set; }
     }
+	//public class UserCount
+	//{
+	//	public int? TotalCount{ get; set; }
+	//}
+
 }
 

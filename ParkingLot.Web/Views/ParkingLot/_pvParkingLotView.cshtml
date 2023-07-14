@@ -1,0 +1,135 @@
+﻿@model ParkingLot.Entities.ViewModels.ParkingLotsViewModel
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead class="table-primary">
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Location
+                </th>
+                <th>
+                    Latitude
+                </th>
+                <th>
+                    Longitude
+                </th>
+                <th>
+                    Opening Time
+                </th>
+                <th>
+                    Closing Time
+                </th>
+                <th>
+                    Closed On
+                </th>
+                <th>
+                    Owner Name
+                </th>
+                <th>
+                    Contact no
+                </th>
+                <th>
+                    Email id
+                </th>
+                <th>
+                    District Name
+                </th>
+                <th>
+                    Payment Type
+                </th>
+                <th>
+                    Created By
+                </th>
+                <th>
+                    Updated On
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.CustomParkingLot)
+            {
+                <tr>
+                    <td>
+                        @item.id
+                    </td>
+                    <td>
+                        @item.name
+                    </td>
+                    <td>
+                        @item.location
+                    </td>
+                    <td>
+                        @item.latitude.ToString("F8")
+                    </td>
+                    <td>
+                        @item.longitude.ToString("F8")
+                    </td>
+                    <td>
+                        @item.openingtime
+                    </td>
+                    <td>
+                        @item.closingtime
+                    </td>
+                    <td>
+                        @item.closedon
+                    </td>
+                    <td>
+                        @item.ownername
+                    </td>
+                    <td>
+                        @item.contactno
+                    </td>
+                    <td>
+                        @item.emailid
+                    </td>
+                    <td>
+                        @item.districtName
+                    </td>
+                    <td>
+                        @item.Type
+                    </td>
+                    <td>
+                        @item.createdby
+                    </td>
+                    <td>
+                        @item.lastupdatedon.ToString("dd MMM yyyy hh:mm tt")
+                    </td>
+                    <td>
+                        <a asp-action="UpdateParkingLots" asp-controller="ParkingLot" asp-route-id="@item.id">Edit</a>
+                    </td>
+                    <td>
+                        <a href="javascript:void(0);" class="delete-link" data-parkinglotid="@item.id">Delete</a>
+                        @*<a asp-action="DeleteView" class="delete-link" asp-route-id="@item.id" data-districtid="@item.id">Delete</a>*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="row text-center">
+        <div id="paging" style="z-index:999">
+
+            @for (int i = 1; i <= Math.Ceiling((decimal)Model.TotalCount / (decimal)ViewBag.CurrentPSize); i++)
+            {
+                if ((int)ViewBag.CurrentPage == @i)
+                {
+                    <a class="active btn btn-sm btn-primary paging" href="javascript:void(0);" data-page-url="/parkinglot/parkinglots?pageno=@i&pagesize=10">@i</a>
+                }
+                else
+                {
+                    <a class="btn btn-sm btn-secondary paging" href="javascript:void(0);" data-page-url="/parkinglot/parkinglots?pageno=@i&pagesize=10">@i</a>
+                }
+            }
+
+        </div>
+    </div>
+</div>
+

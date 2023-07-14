@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Add District";
 }
+<link href="toastr.css" rel="stylesheet" />
 <h1>Select District</h1>
 <div class="row">
     <div class="col-md-12">
@@ -39,6 +40,20 @@
 @section Scripts{
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+    <script src="toastr.js"></script>
+    <script type="text/javascript">$(function () {
+            var errMsg = $('#errMsg').attr('data-msg');
+
+            if (errMsg != '') {
+                if (errMsg == "success") {
+                    toastr.success('Operation Successfull');
+                }
+                else {
+                    toastr.error('Error: ' + errMsg);
+                }
+            }
+    </script>
 }
 
 

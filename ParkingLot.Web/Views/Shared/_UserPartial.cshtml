@@ -1,0 +1,15 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using ParkingLot.Web.Data
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    var appuser = await UserManager.GetUserAsync(User);
+    <li><a href="/dashboard">Welcome  @appuser.FirstName.ToString() </a></li>
+
+}
+else
+{
+    <li><a href="/Account/Login">Login</a></li>
+}

@@ -3,7 +3,15 @@
 @{
     ViewData["Title"] = "PaymentTypes";
 }
-
+<link href="toastr.css" rel="stylesheet" />
+<div class="row">
+    <div class="col-md-12">
+        @if (TempData["ErrMsg"] != null)
+        {
+            <div class="text-danger">Message: @TempData["ErrMsg"].ToString()</div>
+        }
+    </div>
+</div>
 <div class="text-justify">
     <h1>Payment Types</h1>
 </div>
@@ -49,7 +57,7 @@
         </thead>
         <tbody>
             @foreach (var item in Model.PaymentTypes)
-                {
+            {
                 <tr>
                     <td>
                         @item.id
@@ -70,7 +78,7 @@
                         <a href="javascript:void(0);" class="delete-link" data-paymenttypesid="@item.id">Delete</a>
                     </td>
                 </tr>
-                }
+            }
         </tbody>
     </table>
 </div>
@@ -103,10 +111,20 @@
                 $("#paymenttypesid").val(paymenttypesid);
                 $('#deleteModal').modal("show");
             });
-
-
-
         });</script>
+
+    <script src="toastr.js"></script>
+    <script type="text/javascript">$(function () {
+            var errMsg = $('#errMsg').attr('data-msg');
+
+            if (errMsg != '') {
+                if (errMsg == "success") {
+                    toastr.success('Operation Successfull');
+                }
+                else {
+                    toastr.error('Error: ' + errMsg);
+                }
+            }</script>
 }
 
 

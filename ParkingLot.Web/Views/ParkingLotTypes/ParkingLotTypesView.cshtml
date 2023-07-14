@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "MstParkingLotTypes";
 }
-
+<link href="toastr.css" rel="stylesheet" />
 <div class="text-justify">
     <h1>ParkingLotTypes</h1>
 </div>
@@ -108,6 +108,20 @@
                 $('#deleteModal').modal("show");
             });
         });</script>
+
+    <script src="toastr.js"></script>
+    <script type="text/javascript">$(function () {
+            var errMsg = $('#errMsg').attr('data-msg');
+
+            if (errMsg != '') {
+                if (errMsg == "success") {
+                    toastr.success('Operation Successfull');
+                }
+                else {
+                    toastr.error('Error: ' + errMsg);
+                }
+            }
+    </script>
 }
 
 
