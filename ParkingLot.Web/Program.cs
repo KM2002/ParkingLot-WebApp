@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ParkingLot.Web.Data;
+using ParkingLot.Web.Model;
+using ParkingLot.Entities.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +19,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 string? connstring = builder.Configuration.GetConnectionString("Default");
+//var emailconfig = builder.Configuration.GetSection("EmailConfiguration");
+//var emailService = new EmailServiceBll(emailconfig);
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySQL(connstring));
 builder.Services.AddDbContext<ApplicationIdentityDbContext>(options => options.UseMySQL(connstring));
 builder.Services.AddTransient<IDistrictService, DistrictBll>();
@@ -26,8 +30,9 @@ builder.Services.AddTransient<IParkingLotTypesService, ParkingLotTypesBll>();
 builder.Services.AddTransient<IParkingLotFacilitiesService, FacilityBll>();
 builder.Services.AddTransient<IParkingLotService, ParkingLotBll>();
 builder.Services.AddTransient<IUsersService, UsersBll>();
-
 builder.Services.AddIdentity<ApplicationUser,IdentityRole>().AddEntityFrameworkStores<ApplicationIdentityDbContext>();
+builder.Services.AddSingleton<IEmailConfiguration>(builder.Configuration.GetSection("EmailConfiguration").Get<EmailConfig>());
+builder.Services.AddSingleton<IEmailService, EmailServiceBll>();
 builder.Services.AddRazorPages();
 builder.Services.AddMvc();
 

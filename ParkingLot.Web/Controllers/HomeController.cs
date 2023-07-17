@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics;
+using System.Net;
+using System.Net.Mail;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ParkingLot.Entities.Interfaces;
@@ -11,11 +13,15 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     private readonly IParkingLotService _parkingLotService;
+    private readonly IEmailService _emailService;
+    
 
-    public HomeController(ILogger<HomeController> logger,IParkingLotService parkingLotService)
+    public HomeController(IEmailService emailService,ILogger<HomeController> logger,IParkingLotService parkingLotService)
     {
         _logger = logger;
         _parkingLotService = parkingLotService;
+        _emailService = emailService;
+        
     }
 
     public IActionResult Index()
@@ -79,10 +85,17 @@ public class HomeController : Controller
     }
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> ContactUs(string name,string mobileno,string email,string message)
+    public IActionResult Contact(string name, string email, string subject, string message)
     {
+        
+        var response = _emailService.SendEmail(name, email, subject, message);
+        if(response=="success")
+        {
+            return View("~/account/ConfirmRegistration");
+        }
+        return View();
+
         //call sendemailfunction
-        return Json("true");
     }
 
 }

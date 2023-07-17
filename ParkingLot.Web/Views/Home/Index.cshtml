@@ -122,6 +122,8 @@
                 }
                 $.ajax(options).done(function (htmldata) {
                     $("#latestparkinglots").empty().append(htmldata);
+                }).fail(function (e) {
+
                 });
             }
     getlatestparkinglot();
@@ -168,6 +170,8 @@
               
                 L.marker([item.latitude, item.longitude], {icon: Myicon}).addTo(map).bindPopup("<b>"+item.name+"</b><br>"+item.type+"<br> <a href="+"/home/ViewDetails?id="+item.id+" class="+"btn btn-primary"+" target="+"_blank"+">View Details</a>").openPopup();
             })
+        }).fail(function (e) {
+            alert('Error while loading map, Please reload page..')
         });
     }
     loadmaps();

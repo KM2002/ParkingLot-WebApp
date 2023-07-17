@@ -11,7 +11,22 @@
                 <img src="/images/parkingicon.png" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Name : @item.name</h5>
-                    <p class="card-text">Location : @item.location</p>
+                    <p class="card-text">
+                        Location : @item.location <br />
+                        Payment Type : @item.Type
+                        <div class="d-flex justify-content-end">
+                            @{ TimeSpan currenttime = DateTime.Now.TimeOfDay;}
+                            @if (currenttime >= item.openingtime && currenttime <= item.closingtime)
+                            {
+                                <img src="/images/open.png" style="width:50px" />
+                            }
+                            else
+                            {
+                                <img src="/images/closed.png" style="width:50px" />
+                            }
+
+                        </div>
+                    </p>
                 </div>
                 <a href="/home/ViewDetails?id=@item.id" class="btn btn-primary">View Details</a>
             </div>

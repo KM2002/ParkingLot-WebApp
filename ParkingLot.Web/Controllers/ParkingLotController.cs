@@ -101,6 +101,10 @@ namespace ParkingLot.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateParkingLots(ParkingLotAddEditModel dataModel)
         {
+            dataModel.Districts = _districtService.spGetDistrict();
+            dataModel.PaymentTypes = _paymentService.GetMstPaymentTypes();
+            dataModel.ParkingLotTypes = _parkingLotTypesService.GetParkingLotTypes();
+            dataModel.Facilities = _parkingLotFacilitiesService.GetMstFacility();
             if (ModelState.IsValid)
             {
                 dataModel.utblParkingLot.lastupdatedon = DateTime.Now;
@@ -117,10 +121,7 @@ namespace ParkingLot.Web.Controllers
                     }
                 }
             }
-            dataModel.Districts = _districtService.spGetDistrict();
-            dataModel.PaymentTypes = _paymentService.GetMstPaymentTypes();
-            dataModel.ParkingLotTypes = _parkingLotTypesService.GetParkingLotTypes();
-            dataModel.Facilities = _parkingLotFacilitiesService.GetMstFacility();
+            
             return View(dataModel);
         }
 

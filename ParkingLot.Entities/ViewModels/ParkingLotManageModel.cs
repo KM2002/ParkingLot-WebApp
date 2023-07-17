@@ -18,7 +18,6 @@ namespace ParkingLot.Entities.ViewModels
 		public IEnumerable<utblMstParkingLotPaymentType>? PaymentTypes { get; set; } = null!;
 		public List<utblMstParkingLotType>? ParkingLotTypes { get; set; } = null!;
         public List<utblMstParkingLotFacility>? Facilities { get; set; } = null!;
-        public List<Users> Users { get; set; }
 
     }
 

@@ -58,25 +58,26 @@
                 </div>
             </div>
             <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
-                <form action="#">
+                <form method="post" action="/home/contact">
+                    @Html.AntiForgeryToken()
                     <div class="row">
                         <div class="col-6 mb-3">
-                            <input type="text"
+                            <input type="text" name="name"
                                    class="form-control"
                                    placeholder="Your Name" />
                         </div>
                         <div class="col-6 mb-3">
-                            <input type="email"
+                            <input type="email" name="email"
                                    class="form-control"
                                    placeholder="Your Email" />
                         </div>
                         <div class="col-12 mb-3">
-                            <input type="text"
+                            <input type="text" name="subject"
                                    class="form-control"
                                    placeholder="Subject" />
                         </div>
                         <div class="col-12 mb-3">
-                            <textarea name=""
+                            <textarea name="message"
                                       id=""
                                       cols="30"
                                       rows="7"
@@ -85,9 +86,10 @@
                         </div>
 
                         <div class="col-12">
-                            <input type="submit"
-                                   value="Send Message"
-                                   class="btn btn-dark btn-lg rounded-pill" />
+                            <button type="submit"
+                                   
+                                   class="btn btn-dark btn-lg rounded-pill" >Send Message
+                                </button>
                         </div>
                     </div>
                 </form>
